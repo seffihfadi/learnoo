@@ -1,11 +1,14 @@
 import Image from "next/image"
+import Link from "next/link"
+import { LanguageSwitcher } from "./language-swither"
+import ThemeToggle from "./theme-toggle"
 export default function Header() {
   return (
-    <header className="w-full bg-background fixed top-0 left-0 shadow-lg py-2">
+    <header className="w-full bg-background fixed top-0 left-0 shadow-lg py-1 z-20">
       <div className="container flex justify-between items-center">
 
         <div className="logo">
-          <Image src="/learnoo1.svg" alt="" width={130} height={46} />
+          <Image src="/logo2.svg" alt="" width={140} height={57} />
         </div>
         
         <div className="relative mr-auto mx-10">
@@ -14,9 +17,16 @@ export default function Header() {
             <i className="uil uil-search text-primary text-[18px]"></i>
           </div>
         </div>
+        <LanguageSwitcher />
+        <ThemeToggle />
+        {/* <Link href="/account/profile">
+          <div className="rounded-full w-10 h-10 overflow-hidden">
+            <Image className="w-full h-full object-cover" src="/imgs/learn (1).jpg" alt="" width={100} height={100} />
+          </div>
+        </Link> */}
         <div className="flex items-center gap-2">
-          <button className="secondary">login</button>
-          <button className="primary">sign in</button>
+          <Link href="/auth/signin" className="secondary">login</Link>
+          <Link href="/auth/signup" className="primary">sign in</Link>
         </div>
       </div>
     </header>

@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 0 0% 3.9%;
     --primary: 209, 100%, 43%;
     --primary-foreground: 209, 100%, 43%;
     --secondary: 44, 100%, 56%;
@@ -26,7 +26,7 @@ body {
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --ring: 0 0% 3.9%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -35,11 +35,11 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 8.9%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 0 0% 8.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 0 0% 8.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 209, 100%, 43%;
     --primary-foreground: 209, 100%, 43%;
@@ -71,22 +71,166 @@ body {
   }
 
   .container {
-    @apply mx-auto px-5;
+    @apply mx-auto px-5 lg:px-32;
   }
 
-  button.secondary {
+  a.secondary, button.secondary {
     @apply py-2 px-4 text-foreground capitalize font-semibold  hover:text-primary transition-colors duration-300;
   }
 
-  button.primary {
+  a.primary, button.primary {
     @apply py-2 px-4 text-primary capitalize font-semibold bg-blue-100 rounded-lg hover:text-background hover:bg-primary transition-colors duration-300;
+  }
+
+  button.lite {
+    @apply px-3 py-1 rounded-lg font-semibold capitalize border-border border-[1px] 
   }
 
   i {
     @apply text-[25px];
   }
 
-  input {
-    @apply border-[1px] border-border rounded-lg px-4 py-2;
+  header input {
+    @apply border-[1px] border-border rounded-lg px-4 py-2 outline-none bg-background;
+  }
+
+  
+  form .group{
+    @apply flex flex-col relative my-1
+  }
+
+  form .group input,
+  form .group textarea,
+  form .group select{
+    @apply px-5 py-3 rounded-lg outline-none border-[1px] border-border bg-background
+  }
+  
+  form .group label{
+    @apply capitalize absolute top-3 left-4 bg-background px-3 text-muted-foreground transition-all rounded-full
+    cursor-text select-none
+  }
+  form .group span.error {
+    @apply text-sm text-red-500 m-1
+  }
+  form .group span.success{
+    @apply text-sm text-green-500 m-1
+  }
+  form .group input:valid ~ label,
+  form .group input:disabled ~ label,
+  form .group input:focus ~ label,
+  form .group textarea:valid ~ label,
+  form .group textarea:focus ~ label,
+  form .group select:valid ~ label,
+  form .group select:focus ~ label{
+    @apply -top-3 left-2 backdrop-blur-sm text-sm
+  }
+
+  a.social_btn {
+    @apply rounded-lg border-border border-[1px] px-4 py-2 flex items-center justify-center gap-2 w-full
+  }
+
+  #no-scroll::-webkit-scrollbar {
+    @apply w-0
+  
+  }
+
+  .gradient {
+    height: fit-content;
+    z-index: -1;
+    width: 100%;
+    max-width: 740px;
+    background-image: radial-gradient(
+        at 57% 37%,
+        hsla(215, 98%, 61%, 1) 0px,
+        transparent 0%
+      ),
+      radial-gradient(at 97% 51%, rgb(77, 250, 91) 0px, transparent 50%),
+      radial-gradient(at 52% 99%, rgb(185, 5, 5) 0px, transparent 50%),
+      radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+      radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+      radial-gradient(at 73% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+      radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    filter: blur(100px) saturate(150%);
+    opacity: 0.2;
+  }
+
+  h4.title {
+    @apply text-lg font-semibold capitalize w-full text-muted-foreground
+  }
+
+  .filters .filter h6 {
+    @apply my-3 capitalize font-semibold
+  }
+  .filters .filter ul {
+    @apply flex flex-wrap gap-2 items-center mt-3 mb-3 select-none pb-3
+  }
+  .filters .filter ul li {
+    @apply mb-1
+  }
+  .filters .filter ul li input {
+    @apply hidden
+  }
+  .filters .filter ul li label {
+    @apply border-border border-[1px] rounded-full px-3 py-1 cursor-pointer capitalize text-sm  
+  }
+  .filters .filter ul li input:checked ~ label {
+    @apply bg-blue-200 text-black 
+  }
+  .filters .filter.green ul li input:checked ~ label {
+    @apply bg-green-200
+  }
+  .filters .filter.red ul li input:checked ~ label {
+    @apply bg-red-200
+  }
+  .filters .filter.yellow ul li input:checked ~ label {
+    @apply bg-yellow-200
+  }
+  .filters .filter.purple ul li input:checked ~ label {
+    @apply bg-purple-200
+  }
+  .filters .filter.pink ul li input:checked ~ label {
+    @apply bg-pink-200
+  }
+
+
+
+  .course_check input {
+    @apply hidden
+  }
+  .course_check label {
+    @apply cursor-pointer
+  }
+  .course_check label div{
+    @apply border-foreground border-[1px] rounded-full p-1 w-8 h-8 flex items-center justify-center
+  }
+  .course_check input:checked ~ label div {
+    @apply bg-green-600 border-0
+  }
+  .course_check input:checked ~ label div i.check {
+    @apply block text-background
+  }
+  .course_check input:checked ~ label div i.video {
+    @apply hidden
+  }
+
+  button.create_note {
+    @apply border-border border-2 rounded-full pl-5 pr-2 py-1 w-full flex items-center justify-between gap-2
+  }
+
+  .profile_links {
+    @apply  mt-8 border-b-2 border-border 
+  }
+  .profile_links li {
+    @apply py-2
+  }
+  .profile_links a{
+    @apply font-semibold p-3 relative capitalize text-muted-foreground
+  }
+  .profile_links li:first-of-type a::after{
+    @apply content-[''] h-1 rounded-tr-full rounded-tl-full w-full bg-primary absolute bottom-0 left-0
   }
 }
