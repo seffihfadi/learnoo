@@ -34,7 +34,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                 <Link href="/account/wishlist">wishlist</Link>
               </li>
               <li>
-                <Link href="/account/notifications">notifications</Link>
+                <Link href="/account/notifications">notifications <span className="text-secondary">(4)</span></Link>
               </li>
             </ul>
           </div>

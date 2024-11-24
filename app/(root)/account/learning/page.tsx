@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Learning() {
   return (
-    <div className="">
+    <>
       <h2 className="text-2xl">My Progress</h2>
       <div className="grid grid-cols-12 my-10">
         <div className="col-span-3 shadow-md rounded-lg overflow-hidden">
@@ -35,6 +35,6 @@ export default function Learning() {
             </div>
           </div>
       </div>
-    </div>
+    </>
   )
 }

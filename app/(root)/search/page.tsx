@@ -20,7 +20,7 @@ export default function Search() {
           {Array.from({length: 10}).map((_, i) => 
             <div key={i} className="col-span-4 shadow-md rounded-lg overflow-hidden hover:scale-[1.02] transition-transform hover:shadow-lg">
               <div className="w-full aspect-video overflow-hidden">
-                <Image className="w-full h-full object-cover" src="/imgs/learn (2).jpg" alt="" width={500} height={500} />
+                <Image className="w-full h-full object-cover" src="/imgs/learn (8).jpg" alt="" width={500} height={500} />
               </div>
               <div className="p-4">
 
@@ -33,7 +33,7 @@ export default function Search() {
                     <p className="font-semibold text-sm">Seffih Fadi</p>
                   </div>
                   <h5 className="font-semibold mt-2">JavaScript Programming with React, Node & MongoDB</h5>
-                  <p className="line-clamp-3 my-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error reiciendis aliquam nobis corrupti, veniam distinctio doloribus nihil sint eos non inventore consequatur deserunt atque aspernatur eaque qui asperiores mollitia. Error.</p>
+                  <p className="line-clamp-3 my-3 text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error reiciendis aliquam nobis corrupti, veniam distinctio doloribus nihil sint eos non inventore consequatur deserunt atque aspernatur eaque qui asperiores mollitia. Error.</p>
                   <div className="flex items-center">
                     <i className="uil uil-star text-yellow-500"></i>
                     <span className="mx-1 font-semibold">4.5</span>
