@@ -107,7 +107,7 @@ export default function LectureLayout({
                         <input type="checkbox" name="i" id="readed" />
                         <label className="cursor-pointer" htmlFor="readed">
                           <div>
-                            <i className="uil uil-presentation-play text-[15px] video"></i>
+                            <i className="uil uil-airplay text-[15px] video"></i>
                             <i className="uil uil-check text-[18px] check hidden"></i>
                           </div>
                         </label>
@@ -122,7 +122,7 @@ export default function LectureLayout({
                         <input type="checkbox" name="i" id="readed" />
                         <label className="cursor-pointer" htmlFor="readed">
                           <div>
-                            <i className="uil uil-presentation-play text-[15px] video"></i>
+                            <i className="uil uil-airplay text-[15px] video"></i>
                             <i className="uil uil-check text-[18px] check hidden"></i>
                           </div>
                         </label>
@@ -137,7 +137,7 @@ export default function LectureLayout({
                         <input type="checkbox" name="i" id="readed" />
                         <label className="cursor-pointer" htmlFor="readed">
                           <div>
-                            <i className="uil uil-presentation-play text-[15px] video"></i>
+                            <i className="uil uil-airplay text-[15px] video"></i>
                             <i className="uil uil-check text-[18px] check hidden"></i>
                           </div>
                         </label>
@@ -191,17 +191,17 @@ export default function LectureLayout({
                 <AccordionContent className="px-5 text-base">
                   <ul className="text-sm">
                     <li className="flex items-center gap-3 mb-3">
-                      <i className="uil uil-presentation-play"></i>
+                      <i className="uil uil-airplay"></i>
                       <p>Introduction to the program</p>
                       <span className="text-muted-foreground ml-auto">1m</span>
                     </li>
                     <li className="flex items-center gap-3 mb-3">
-                      <i className="uil uil-presentation-play"></i>
+                      <i className="uil uil-airplay"></i>
                       <p>Filtering data using AND, OR and NOT logical operators</p>
                       <span className="text-muted-foreground ml-auto">9m</span>
                     </li>
                     <li className="flex items-center gap-3 mb-3">
-                      <i className="uil uil-presentation-play"></i>
+                      <i className="uil uil-airplay"></i>
                       <p>JOINS</p>
                       <span className="text-muted-foreground ml-auto">5m</span>
                     </li>

@@ -11,7 +11,7 @@ export default function InstructorLayout({children}: Readonly<{children: React.R
           <ul className="flex flex-col gap-2 items-center justify-center bg-background border-border border-[1px] border-l-0 px-2 py-6 rounded-tr-2xl rounded-br-2xl">
             <li>
               <Link title="dashboard" href="/inst/">
-                <i className="uil uil-dashboard"></i>
+                <i className="uil uil-chart-line"></i>
               </Link>
             </li>
             <li>
@@ -25,7 +25,7 @@ export default function InstructorLayout({children}: Readonly<{children: React.R
               </Link>
             </li>
             <li>
-              <Link title="create course" href="/inst/create">
+              <Link title="create course" href="/inst/courses/create">
                 <i className="uil uil-plus-circle"></i>
               </Link>
             </li>

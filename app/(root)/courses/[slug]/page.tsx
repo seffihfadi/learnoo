@@ -112,17 +112,17 @@ export default function Cours() {
                   <AccordionContent className="px-5 text-base">
                     <ul>
                       <li className="flex items-center gap-3 mb-3">
-                        <i className="uil uil-presentation-play"></i>
+                        <i className="uil uil-airplay"></i>
                         <p>Introduction to the program</p>
                         <span className="text-muted-foreground ml-auto">1 minute</span>
                       </li>
                       <li className="flex items-center gap-3 mb-3">
-                        <i className="uil uil-presentation-play"></i>
+                        <i className="uil uil-airplay"></i>
                         <p>Filtering data using AND, OR and NOT logical operators</p>
                         <span className="text-muted-foreground ml-auto">9 minute</span>
                       </li>
                       <li className="flex items-center gap-3 mb-3">
-                        <i className="uil uil-presentation-play"></i>
+                        <i className="uil uil-airplay"></i>
                         <p>JOINS</p>
                         <span className="text-muted-foreground ml-auto">5 minute</span>
                       </li>
@@ -150,17 +150,17 @@ export default function Cours() {
                   <AccordionContent className="px-5 text-base">
                     <ul>
                       <li className="flex items-center gap-3 mb-3">
-                        <i className="uil uil-presentation-play"></i>
+                        <i className="uil uil-airplay"></i>
                         <p>Introduction to the program</p>
                         <span className="text-muted-foreground ml-auto">1 minute</span>
                       </li>
                       <li className="flex items-center gap-3 mb-3">
-                        <i className="uil uil-presentation-play"></i>
+                        <i className="uil uil-airplay"></i>
                         <p>Filtering data using AND, OR and NOT logical operators</p>
                         <span className="text-muted-foreground ml-auto">9 minute</span>
                       </li>
                       <li className="flex items-center gap-3 mb-3">
-                        <i className="uil uil-presentation-play"></i>
+                        <i className="uil uil-airplay"></i>
                         <p>JOINS</p>
                         <span className="text-muted-foreground ml-auto">5 minute</span>
                       </li>
