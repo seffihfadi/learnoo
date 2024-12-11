@@ -217,6 +217,10 @@
     @apply hidden
   }
 
+  button:disabled {
+    @apply animate-pulse
+  }
+
   button.create_note {
     @apply border-border border-2 rounded-full pl-5 pr-2 py-1 w-full flex items-center justify-between gap-2
   }

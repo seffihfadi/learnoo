@@ -30,7 +30,7 @@ export default function AuthLayout({children}: Readonly<{children: React.ReactNo
         </div>
         <div className="grid grid-cols-2 gap-5 w-full px-5 max-w-md">
           <div className="col-span-1">
-            <Link className="social_btn" href="/">
+            <Link className="social_btn" href={`${process.env.BACKEND_URL}/users/auth/oauth/google/login?success_url=http%3A%2F%2Flocalhost%3A3000&failure_url=https%3A%2F%2Fwww.facebook.com`}>
               <Image src="/social/google.svg" alt="google" width={25} height={25} />
               Google
             </Link>

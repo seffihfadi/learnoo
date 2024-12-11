@@ -54,7 +54,7 @@ export default function Profile() {
             <div className="grid grid-cols-12 mt-5 gap-5">
               {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="col-span-4 aspect-square bg-gradient-to-tl to-transparent from-muted rounded-xl overflow-hidden">
-                <Image className="object-contain h-full w-full" src={`/imgs/learn (${i+4}).jpg`} width={1000} height={1000} alt="" />
+                <Image className="object-contain h-full w-full hover:scale-105 transition-all" src={`/imgs/learn (${i+4}).jpg`} width={1000} height={1000} alt="" />
                 </div>
               ))}
               
