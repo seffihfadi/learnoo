@@ -1,7 +1,29 @@
-import type { NextConfig } from "next";
+
+/** @type {import('next').NextConfig} */
+import withPlaiceholder from '@plaiceholder/next';
+import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https' as 'https',
+        hostname: 'ik.imagekit.io',
+        port: '',
+        pathname: '/**'
+      },
+      {
+        hostname: "localhost"
+      },
+      {
+        hostname: "miro.medium.com"
+      },
+    ]
+  },
+  
 };
 
-export default nextConfig;
+export default withPlaiceholder(nextConfig);

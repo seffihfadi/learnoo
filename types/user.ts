@@ -3,30 +3,30 @@ import type { Question, Test } from "./test";
 
 export interface User {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   email: string;
   password: string;
-  fullName: string;
-  emailVerified: boolean;
-  paymentCustomerID?: string;
+  full_name: string;
+  email_verified: boolean;
+  payment_customer_id?: string;
   image?: File;
-  authorProfile?: Author;
+  author_profile?: Author;
   courses?: Course[];
   lessons?: Lesson[];
   tests?: Test[];
-  answeredQuestions?: Question[];
+  answered_questions?: Question[];
 }
 
 export interface Author {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   bio?: Record<string, any>; // Assuming it's a generic object for the bio field
   balance?: number;
-  userID?: string;
+  user_id?: string;
   user?: User;
   accomplishments?: File[];
   courses?: Course[];

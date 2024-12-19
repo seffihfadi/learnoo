@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@/lib/utils"
+import { cn, getDataAction } from "@/lib/utils"
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,12 +9,13 @@ export default function SearchFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
+  const [categories, setCategories] = useState<{id: number, name: string}[]>([])
 
   const filters = [
     {
       title: 'categories',
       color: 'green',
-      items: ['Web Development', 'Mobile Development', 'Data Science', 'Design', 'Marketing']
+      items: []
     },
     {
       title: 'level',
@@ -43,8 +44,25 @@ export default function SearchFilters() {
     }
   ]
 
-   // Parse filters from URL on load
-   useEffect(() => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/courses/categories/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+  
+      const resault = await response.json()
+      console.log('categories', resault.categories)
+      setCategories(resault.categories)
+    }
+    fetchData()
+  }, [])
+
+  const categoryNames = categories.map(category => category.name);
+  filters[0].items.push(...categoryNames);
+  useEffect(() => {
     const newFilters: Record<string, string[]> = {};
     filters.forEach((filter) => {
       const values = searchParams.get(filter.title)?.split(",") || [];
@@ -53,7 +71,6 @@ export default function SearchFilters() {
     setSelectedFilters(newFilters);
   }, [searchParams]);
 
-  // Update the URL based on selected filters
   const updateURL = (filterTitle: string, value: string, isChecked: boolean) => {
     const updatedFilters = { ...selectedFilters };
     const currentValues = updatedFilters[filterTitle] || [];

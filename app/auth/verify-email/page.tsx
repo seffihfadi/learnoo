@@ -16,6 +16,7 @@ export default function VerifyEmail() {
     console.log('process.env.BACKEND_URL', JSON.stringify({ email }))
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/auth/send-email-verification-link`, {
       method: "POST",
+      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },

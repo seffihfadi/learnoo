@@ -10,7 +10,7 @@ export async function signinAction(prev: any, formData: FormData) {
     password: formData.get('password')
   }
 
-  const res = await fetch(`${process.env.BACKEND_URL}/users/auth/login-with-email-and-password`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/auth/login-with-email-and-password`, {
     method: "POST",
     body: JSON.stringify(credentials),
     headers: {
@@ -18,23 +18,14 @@ export async function signinAction(prev: any, formData: FormData) {
     },
   });
 
-  if (res.status === 200) {
-    redirect('/account/profile');
-  }
-
-  console.log("Response Headers:", res.headers);
-
   const setCookieHeader = res.headers.get("set-cookie");
-
-  if (setCookieHeader) {
-
+  if (res.ok && setCookieHeader) {
     const cookiesArray = setCookieHeader.split(", ").map((cookie) => cookie.split(";")[0]);
-
     const cookiesStore = await cookies();
 
     cookiesArray.forEach((cookiePair) => {
-      const [key, value] = cookiePair.split('=');
 
+      const [key, value] = cookiePair.split('=');
       const cookieOptions: any = {
         path: '/',
         httpOnly: true,
@@ -43,6 +34,7 @@ export async function signinAction(prev: any, formData: FormData) {
       };
 
       // Assign different expiration times for tokens
+      console.log('key', key)
       if (key === 'accessToken') {
         cookieOptions.maxAge = 60 * 15; // 15 minutes
       } else if (key === 'refreshToken') {
@@ -50,12 +42,13 @@ export async function signinAction(prev: any, formData: FormData) {
       }
 
       cookiesStore.set(key, value, cookieOptions);
+      redirect('/account/profile');
+      
     });
   }
 
   try {
     const data = await res.json();
-    console.log("Response Body:", data);
     return data;
   } catch (error) {
     throw new Error('Failed to parse the response.');
@@ -71,7 +64,7 @@ export async function signupAction(prev: any, formData: FormData) {
     full_name: formData.get('name')
   }
 
-  const res = await fetch(`${process.env.BACKEND_URL}/users/auth/register-with-email-and-password`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/auth/register-with-email-and-password`, {
     method: "POST",
     body: JSON.stringify(credentials),
     headers: {

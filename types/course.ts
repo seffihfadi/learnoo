@@ -1,35 +1,37 @@
+import type { File } from "./file";
 import type { Test } from "./test";
 import type { Author, User } from "./user";
 
 // Language Enum
-export type Languages = 'ar' | 'fr' | 'en';
+export type languages = 'ar' | 'fr' | 'en';
 
 // Level Enum
-export type Level = 'beginner' | 'medium' | 'advanced';
+export type level = 'beginer' |'medium' | 'advanced';
 
 // LearningStatus Enum
-export type LearningStatus = 'succeed' | 'failed' | 'learning';
+export type LearningStatus ='succeed' | 'failed' | 'learning';
 
 export interface Course {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   title: string;
   description?: string;
   price: number;
-  paymentPriceID?: string | null;
-  paymentProductID?: string | null;
-  language: Languages;
-  level: Level;
+  payment_price_id?: string | null;
+  payment_product_id?: string | null;
+  language: languages;
+  level: level;
   duration: number;
   rate: number;
-  isCompleted: boolean;
+  raters_count: number;
+  is_completed: boolean;
   requirements?: Requirement[];
   objectives?: Objective[];
   video?: File;
   image?: File;
-  authorID?: string;
+  author_id?: string;
   author?: Author;
   categories?: Category[];
   chapters?: Chapter[];
@@ -38,51 +40,51 @@ export interface Course {
 
 export interface Category {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   name: string;
   courses?: Course[];
 }
 
 export interface CourseCategory {
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
-  courseID: number;
-  categoryID: number;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
+  course_id: number;
+  category_id: number;
   course?: Course;
   category?: Category;
 }
 
 export interface Objective {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   content: string;
-  courseID?: number;
+  course_id?: number;
   course?: Course;
 }
 
 export interface Requirement {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   content: string;
-  courseID?: number;
+  course_id?: number;
   course?: Course;
 }
 
 export interface Chapter {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   title: string;
   description: string;
-  courseID?: number;
+  course_id?: number;
   course?: Course;
   lessons?: Lesson[];
   test?: Test;
@@ -90,39 +92,39 @@ export interface Chapter {
 
 export interface Lesson {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
   title: string;
   description?: string;
-  isVideo: boolean;
+  is_video: boolean;
   content: Record<string, unknown>;
   video?: File;
-  chapterID?: number;
+  chapter_id?: number;
   chapter?: Chapter;
   learners?: User[];
 }
 
 export interface LessonLearner {
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
-  lessonID: number;
-  learnerID: number;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
+  lesson_id: number;
+  learner_id: number;
   lesson?: Lesson;
   learner?: User;
   learned: boolean;
 }
 
 export interface CourseLearner {
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
-  courseID: number;
-  learnerID: string;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at?: Date | null;
+  course_id: number;
+  learner_id: string;
   course?: Course;
   learner?: User;
-  learningStatus: LearningStatus;
+  learning_status: LearningStatus;
   rate?: number;
-  checkoutID?: string;
+  checkout_id?: string;
 }

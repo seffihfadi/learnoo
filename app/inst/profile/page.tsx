@@ -1,8 +1,17 @@
+import { getDataAction } from "@/actions/getActions";
+import NotFound from "@/app/not-found";
 import RaitingDisplay from "@/components/common/raiting-display";
+import { Author } from "@/types/user";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Profile() {
+export default async function Profile() {
+
+  const author = await getDataAction<Author>("/users/profiles/authors/profile", "append_with=accomplishments,user,courses");
+  console.log('author', author)
+
+  if (!author) return <NotFound />;
+
   return (
     <section>
       <div className="bg-muted rounded-br-3xl rounded-bl-3xl w-full px-20 py-10">
@@ -18,8 +27,10 @@ export default function Profile() {
             <Image className="w-full h-full object-cover" src="/imgs/learn (6).jpg" alt="" width={500} height={500} />
           </div>
           <div className="flex flex-col mx-5">
-            <h2 className="text-3xl">Zakaria Saoual</h2>
-            <p className="text-lg text-muted-foreground">12 Course</p>
+            <h2 className="text-3xl capitalize">{author.user?.full_name}</h2>
+            {author.courses && <p className="text-lg text-muted-foreground">{author.courses?.length} Courses</p>}
+            <p className="text-lg text-green-600">{author.balance}DZD</p>
+
           </div>
           <div className="flex gap-2 items-center ml-auto">
             <span className="text-4xl">3.5</span>

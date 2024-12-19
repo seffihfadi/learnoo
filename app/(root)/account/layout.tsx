@@ -1,7 +1,17 @@
+import { getDataAction } from "@/actions/getActions";
+import NotFound from "@/app/not-found";
+import LazyImage from "@/components/custom/lazy-image";
+import { User } from "@/types/user";
+// import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function AccountLayout({ children }: { children: React.ReactNode }) {
+export default async function AccountLayout({ children }: { children: React.ReactNode }) {
+
+  const profile = await getDataAction<User>("/users/profiles/profile", "append_with=image,author_profile")
+  console.log('data', profile)
+  if (!profile) return <NotFound />
+  
   return (
     <>
       <section>
@@ -16,10 +26,11 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
             </div>
             <div className="flex items-center gap-3">
               <div className="rounded-full w-40 aspect-square overflow-hidden">
+                {/* <LazyImage className="w-full h-full object-cover" src={} alt="" width={500} height={500} /> */}
                 <Image className="w-full h-full object-cover" src="/imgs/learn (6).jpg" alt="" width={500} height={500} />
               </div>
               <div className="flex flex-col mx-5">
-                <h2 className="text-3xl">Seffih Fadi</h2>
+                <h2 className="text-3xl capitalize">{profile.full_name}</h2>
                 <p className="text-lg text-muted-foreground">3 active courses</p>
               </div>
             </div>
