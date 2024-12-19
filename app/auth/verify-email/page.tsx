@@ -13,7 +13,7 @@ export default function VerifyEmail() {
   const handleResend = async () => {
     setIsDisabled(true);
     setCounter(5);
-    console.log('process.env.BACKEND_URL', JSON.stringify({ email }))
+    // console.log('process.env.BACKEND_URL', JSON.stringify({ email }))
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/auth/send-email-verification-link`, {
       method: "POST",
       // mode: "no-cors",

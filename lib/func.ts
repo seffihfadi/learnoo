@@ -56,5 +56,6 @@ export function buildQueryString (searchObj: Record<any, any>) {
 
 export async function getProfile(): Promise<User> {
   const cookieStore = await cookies()
-  return JSON.parse(cookieStore.get('profile')?.value || '{}')
+  const profile = JSON.parse(cookieStore.get('profile')?.value || "{}");
+  return Object.keys(profile).length > 0 ? profile : null;
 }

@@ -1,6 +1,5 @@
 import RaitingDisplay from "@/components/common/raiting-display";
 import Image from "next/image";
-import {useTranslations} from 'next-intl';
 
 import {
   Accordion,
@@ -13,6 +12,7 @@ import type { Course } from "@/types/course";
 import NotFound from "@/app/not-found";
 import { formatDate, getLanguageName } from "@/lib/utils";
 import EnrollForm from "@/components/forms/enroll-form";
+import { getTranslations } from "next-intl/server";
 
 interface Params {
   params: {
@@ -22,11 +22,14 @@ interface Params {
 }
 
 export default async function Cours({ params }: Params) {
-  // const t = useTranslations();
+  const t = await getTranslations("CoursePresentationPage");
   const { courseId } = await params
   const course = await getDataAction<Course>(`/courses/${courseId}`, 'append_with=video,author,categories,chapters,learners,requirements,objectives')
   // console.dir(course, {depth: 4})
+  
   if (!course) return <NotFound />
+
+
   return (
     <section>
       <div className="bg-muted">
@@ -43,16 +46,16 @@ export default async function Cours({ params }: Params) {
             <div className="flex items-center">
               <span className="font-semibold">{course.rate}</span>
               <RaitingDisplay rate={course.rate} />
-              {/* <span className="text-sm">({course.raters_count} {t('reviews')}</span> */}
+              <span className="text-sm">({course.raters_count} {t('reviews')})</span>
             </div>
             <div className="flex items-center mt-3 justify-between">
               <EnrollForm courseId={course.id} />
-              <h4 className="text-4xl font-bold">{course.price}DZD</h4>
+              <h4 className="text-4xl font-bold">{course.price} {t('dzd')}</h4>
             </div>
             <div className="flex flex-wrap gap-4 items-center mt-10">
               <div className="flex gap-2 items-center">
                 <i className="uil uil-history-alt text-[20px]"></i>
-                <p>Last update <span className="font-semibold">{formatDate(course.updated_at)}</span></p>
+                <p>{t('lastUpdate')} <span className="font-semibold">{formatDate(course.updated_at)}</span></p>
               </div>
               <div className="flex gap-2 items-center">
                 <i className="uil uil-language text-[20px]"></i>
@@ -60,7 +63,7 @@ export default async function Cours({ params }: Params) {
               </div>
               <div className="flex gap-2 items-center">
                 <i className="uil uil-briefcase text-[20px]"></i>
-                <p><span className="font-semibold">{course.learners?.length}</span> already enrolled</p>
+                <p><span className="font-semibold">{course.learners?.length}</span> {t('alreadyEnroled')}</p>
               </div>
             </div>
           </div>
@@ -71,7 +74,7 @@ export default async function Cours({ params }: Params) {
       </div>
       <div className="container">
         <div className="my-10">
-        <h3 className="text-xl font-semibold">Prerequisites</h3>
+        <h3 className="text-xl font-semibold">{t('prerequisites')}</h3>
           <div className="grid grid-cols-12">
             <ul className="col-span-8 grid grid-cols-2 gap-6 my-6">
               {course.objectives?.map((objective, i) =>
@@ -82,7 +85,7 @@ export default async function Cours({ params }: Params) {
               )}
             </ul>
           </div>
-          <h3 className="text-xl font-semibold">What you'll learn</h3>
+          <h3 className="text-xl font-semibold">{t('whatLearn')}</h3>
           <div className="grid grid-cols-12">
             <ul className="col-span-8 grid grid-cols-2 gap-6 my-6">
               {course.objectives?.map((objective, i) =>
@@ -96,7 +99,7 @@ export default async function Cours({ params }: Params) {
         </div>
 
         <div className="my-10">
-          <h3 className="text-2xl font-semibold">There are {course.chapters?.length} chapters in this course</h3>
+          <h3 className="text-2xl font-semibold">{t('thereAre')} {course.chapters?.length} {t('chaptersInThisCourse')}</h3>
           <div className="grid grid-cols-12">
             <div className="col-span-8">
               
@@ -104,9 +107,9 @@ export default async function Cours({ params }: Params) {
                 {course.chapters?.map((chapter, i) =>
                   <AccordionItem className="last-of-type:border-0" key={i} value={`item-${i}`}>
                     <AccordionTrigger className="p-5 !no-underline">
-                      <div className="">
+                      <div className="flex flex-col items-start">
                         <h5 className="text-lg">{chapter.title}</h5>
-                        <p className="text-muted-foreground">Chapter {i+1} &bull; 9 hours</p>
+                        <p className="text-muted-foreground">{t('chapter')} {i+1} &bull; 9 hours</p>
                       </div>
 
                     </AccordionTrigger>
@@ -116,14 +119,14 @@ export default async function Cours({ params }: Params) {
                           <li key={j} className="flex items-center gap-3 mb-3">
                             {lesson.is_video ? <i className="uil uil-airplay"></i> : <i className="uil uil-file-info-alt"></i>}
                             <p>{lesson.title}</p>
-                            <span className="text-muted-foreground ml-auto">1m</span>
+                            <span className="text-muted-foreground ltr:ml-auto rtl:mr-auto">1m</span>
                           </li>
                         )}
                         
                         <li className="flex items-center gap-3 mb-3">
                           <i className="uil uil-notes"></i>
-                          <p>Final Test</p>
-                          <span className="text-muted-foreground ml-auto">20Q</span>
+                          <p>{t('finalTest')}</p>
+                          <span className="text-muted-foreground ltr:ml-auto rtl:mr-auto">20Q</span>
                         </li> 
                       </ul>
                     </AccordionContent>
@@ -136,14 +139,14 @@ export default async function Cours({ params }: Params) {
           </div>
         </div>
         <div className="my-10">
-          <h3 className="text-2xl font-semibold">Recomemded courses</h3>
+          <h3 className="text-2xl font-semibold">{t('recomemdedCourses')}</h3>
           <div className="grid grid-cols-12">
 
           </div>
         </div>
 
         <div className="my-10">
-          <h3 className="text-2xl font-semibold">Learners reviews</h3>
+          <h3 className="text-2xl font-semibold">{t('learnersReviews')}</h3>
           <div className="grid grid-cols-12 gap-10">
             <div className="col-span-8">
               <div className="comment my-5">

@@ -1,10 +1,47 @@
 {
-  "homePage": {
-    "title": "Home Page",
-    "welcome": "Welcome to the home page"
+  "HomePage": {
+    "title": "Hello world!"
   },
-  "CourseShowPage": {
+  "CoursePresentationPage": {
+    "title": "Course Presentation",
     "reviews": "reviews",
-    "welcome": "Welcome to the course show page"
+    "lastUpdate": "last update",
+    "alreadyEnroled": "already enrolled",
+    "dzd": "DZD",
+    "enroll": "Enroll now",
+    "prerequisites": "Prerequisites",
+    "whatLearn": "What you will learn",
+    "thereAre": "There are",
+    "chaptersInThisCourse": "chapters in this course",
+    "chapter": "Chapter",
+    "finalTest": "Final Test",
+    "recomemdedCourses": "Recommended Courses",
+    "learnersReviews": "Learners Reviews"
+  },
+  "NotFound": {
+    "notFound": "Page Not Found",
+    "message": "it seems like you navigated to a page that doesn't exist. Please check the URL or return to the homepage."
+  },
+  "SearchPage": {
+    "search": "Search",
+    "whatWouldYouLikeToLearn": "What would you like to learn?",
+    "filterBy": "Filter by",
+    "reviews": "Reviews",
+    "price": "Price",
+    "free": "Free",
+    "paid": "Paid",
+    "noCourses": "No courses found",
+    "h": "h",
+    "duration": "Duration",
+    "level": "Level",
+    "beginner": "Biginner",
+    "medium": "Intermediate",
+    "advanced": "Advanced",
+    "language": "Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "french": "French",
+    "spanish": "Spanish"
+
   }
 }

@@ -2,11 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations("SearchPage");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -23,17 +26,17 @@ export default function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSearch} className="relative mr-auto mx-10">
+    <form onSubmit={handleSearch} className="relative ltr:mr-auto mx-10 rtl:ml-auto">
       <input
         className="rounded-full w-96"
         type="text"
-        placeholder="What do you want to learn?"
+        placeholder={t('whatWouldYouLikeToLearn')}
         value={searchQuery}
         onChange={handleInputChange}
       />
       <button
         type="submit"
-        className="absolute rounded-full aspect-square h-[calc(100%-8px)] bg-blue-100 flex items-center justify-center right-1 top-1"
+        className="absolute rounded-full aspect-square h-[calc(100%-8px)] bg-blue-100 flex items-center justify-center rtl:left-1 ltr:right-1 top-1"
       >
         <i className="uil uil-search text-primary text-[18px]"></i>
       </button>

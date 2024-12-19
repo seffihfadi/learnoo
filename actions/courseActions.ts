@@ -15,7 +15,7 @@ export async function enrollAction({courseId} : {courseId: string}) {
 
   const data1 = await response.json();
   // return data || {};
-  console.log('data1', data1)
+  // console.log('data1', data1)
   
   if (response.status === 401) {
     redirect(`/auth/signin`)

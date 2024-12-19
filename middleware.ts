@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
     if (!profile) return NextResponse.redirect(new URL('/auth/signin', request.url))
     
     const isInstructorRoute = request.nextUrl.pathname.startsWith('/inst');
-    console.log('cant access', isInstructorRoute && !profile.author_profile)
+    // console.log('cant access', isInstructorRoute && !profile.author_profile)
     if (isInstructorRoute && !profile.author_profile) {
       return NextResponse.redirect(new URL('/account', request.url))
     }
@@ -50,6 +50,6 @@ export const config = {
     '/inst', 
     '/account', 
     '/account/:path',
-    "/((?!api|_next|_vercel|.*\\..*).*)"
+    // "/((?!api|_next|_vercel|.*\\..*).*)"
   ]
 };

@@ -5,11 +5,13 @@ import ThemeToggle from "./theme-toggle"
 import SearchBar from "../custom/search-bar"
 import { cookies } from "next/headers"
 import UserImage from "../custom/user-image"
+import { getProfile } from "@/lib/func"
 
 
 export default async function Header() {
-  const cookieStore = await cookies()
-  const profile = JSON.parse(cookieStore.get('profile')?.value || '{}')
+  const profile = await getProfile()
+
+  // console.log('profile', profile)
   
   return (
     <header className="w-full bg-background fixed top-0 left-0 shadow-lg py-1 z-20">

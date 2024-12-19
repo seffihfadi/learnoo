@@ -25,7 +25,7 @@ export default function SearchFilters() {
       })
   
       const resault = await response.json()
-      console.log('categories', resault.categories)
+      // console.log('categories', resault.categories)
       setCategories(resault.categories)
     }
     fetchData()

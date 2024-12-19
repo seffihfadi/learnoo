@@ -1,10 +1,46 @@
 {
-  "homePage": {
-    "title": "الصفحة الرئيسية",
-    "welcome": "مرحبًا بك في الصفحة الرئيسية"
+  "HomePage": {
+    "title": "مرحبا بالعالم!"
   },
-  "CourseShowPage": {
+  "CoursePresentationPage": {
+    "title": "عرض الدورة",
+    "reviews": "مراجعات",
+    "lastUpdate": "آخر تحديث",
+    "alreadyEnroled": "مسجل بالفعل",
+    "dzd": "دج",
+    "enroll": "سجل الآن",
+    "prerequisites": "المتطلبات الأساسية",
+    "whatLearn": "ما ستتعلمه",
+    "thereAre": "هناك",
+    "chaptersInThisCourse": "فصول في هذه الدورة",
+    "chapter": "الفصل",
+    "finalTest": "الاختبار النهائي",
+    "recomemdedCourses": "الدورات الموصى بها",
+    "learnersReviews": "مراجعات المتعلمين"
+  },
+  "NotFound": {
+    "notFound": "الصفحة غير موجودة",
+    "message": "يبدو أنك قمت بالانتقال إلى صفحة غير موجودة. يرجى التحقق من عنوان URL أو العودة إلى الصفحة الرئيسية."
+  },
+  "SearchPage": {
+    "search": "بحث",
+    "whatWouldYouLikeToLearn": "ماذا ترغب في تعلمه؟",
+    "filterBy": "تصفية حسب",
     "reviews": "المراجعات",
-    "welcome": "مرحبًا بك في صفحة عرض الدورة"
+    "price": "السعر",
+    "free": "مجاني",
+    "paid": "مدفوع",
+    "noCourses": "لم يتم العثور على دورات",
+    "h": "سا",
+    "duration": "المدة",
+    "level": "المستوى",
+    "beginner": "مبتدئ",
+    "medium": "متوسط",
+    "advanced": "متقدم",
+    "language": "اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "french": "الفرنسية",
+    "spanish": "الإسبانية"
   }
 }

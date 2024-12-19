@@ -1,18 +1,17 @@
-// import { getLanguage } from "@/actions/strapi";
-// import Meteors from "@/components/ui/meteors";
-// import { getDictionary } from "@/lib/dict";
+import { getTranslations } from "next-intl/server"
 
 
 export default async function NotFound({message}: {message?: string}) {
-  // const lang = await getLanguage()
-  // const dict = getDictionary(lang)
+
+  const t = await getTranslations('NotFound')
+
   return (
     <section className="h-[100vh] -mt-20 flex justify-center items-center overflow-hidden relative col-span-12">
       {/* <Meteors number={20} /> */}
       <div>
-        <h1 className='text-2xl capitalize text-center mb-3'>404 | Page Not Found</h1>
+        <h1 className='text-2xl capitalize text-center mb-3'>404 | {t('notFound')}</h1>
         <p className="text-muted-foreground max-w-lg text-lg text-center">
-          {message || "it seems like you navigated to a page that doesn't exist. Please check the URL or return to the homepage."}
+          {message || t('message')}
         </p>
       </div>
     </section>

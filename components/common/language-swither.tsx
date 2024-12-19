@@ -8,11 +8,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { type Locale } from "@/lib/locales";
 import { DropdownMenuCheckboxItem } from "@radix-ui/react-dropdown-menu";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import React from "react";
+type Locale = "en" | "ar";
 
 export const LanguageSwitcher: React.FC = () => {
   const locale = useLocale() as Locale;

@@ -3,18 +3,21 @@ import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { twMerge } from "tailwind-merge"
 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
 
-const languages: Record<string, string> = {
-  ar: 'Arabic',
-  en: 'English',
-  fr: 'French',
-};
 
-export function getLanguageName(code: string) {
+
+export async function getLanguageName(code: string) {
+  const lang = await getLocale();
+  const isEn = lang === 'en';
+  const languages: Record<string, string> = {
+    ar: isEn ? 'Arabic' : 'العربية',
+    en: isEn ? 'English': 'الإنجليزية',
+  };
   return languages[code] || 'Unknown language';
 }
 
@@ -22,7 +25,7 @@ export function getLanguageName(code: string) {
 export async function formatDate(date: Date) {
   // if (!date) return null
   const lang = await getLocale();
-  console.log('lang', lang)
+  // console.log('lang', lang)
 
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
@@ -61,6 +64,7 @@ export async function getDataAction<T>(path: string, query: string): Promise<T |
     if (resault?.message || resault?.error) {
       notFound()
     }
+    // console.log('resault', resault)
     return resault
   } catch (error) {
     console.error("Error fetching data:", error);

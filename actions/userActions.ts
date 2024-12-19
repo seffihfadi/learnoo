@@ -73,14 +73,14 @@ export async function signupAction(prev: any, formData: FormData) {
   });
 
   // console.log("Response Headers:", res.headers);
-  console.log('res.status', res.status)
+  // console.log('res.status', res.status)
 
   if (res.status === 201) {
     redirect('/auth/verify-email?email=' + credentials.email);
   }
   try {
     const data = await res.json();
-    console.log("Response Body:", data);
+    // console.log("Response Body:", data);
     return data;
   } catch (error) {
     throw new Error('Failed to parse the response.'); 
