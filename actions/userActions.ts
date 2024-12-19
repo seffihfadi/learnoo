@@ -42,7 +42,7 @@ export async function signinAction(prev: any, formData: FormData) {
       }
 
       cookiesStore.set(key, value, cookieOptions);
-      redirect('/account/profile');
+      redirect('/account/learning');
       
     });
   }

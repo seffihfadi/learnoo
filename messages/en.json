@@ -1,0 +1,10 @@
+{
+  "homePage": {
+    "title": "Home Page",
+    "welcome": "Welcome to the home page"
+  },
+  "CourseShowPage": {
+    "reviews": "reviews",
+    "welcome": "Welcome to the course show page"
+  }
+}

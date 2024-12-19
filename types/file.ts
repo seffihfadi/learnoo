@@ -7,7 +7,9 @@ export interface File {
   updatedAt: Date;
   deletedAt?: Date | null;
   url: string;
-  thumbnailURL?: string | null;
+  width: number;
+  height: number;
+  thumbnail_url: string | null;
   imageKitID?: string | null;
   userID?: string | null;
   user?: User;

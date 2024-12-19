@@ -1,48 +1,19 @@
 "use client"
 
-import { cn, getDataAction } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+import type { Filter } from "@/lib/constants";
+import { filtersInit } from "@/lib/constants";
 
 export default function SearchFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
   const [categories, setCategories] = useState<{id: number, name: string}[]>([])
-
-  const filters = [
-    {
-      title: 'categories',
-      color: 'green',
-      items: []
-    },
-    {
-      title: 'level',
-      color: 'red',
-      items: ['Beginner', 'Intermediate', 'Advanced']
-    },
-    {
-      title: 'price',
-      color: 'blue',
-      items: ['all', 'Free', 'Paid']
-    },
-    {
-      title: 'duration',
-      color: 'yellow',
-      items: ['0-1 hour', '1-3 hours', '3-6 hours', '6-12 hours', '12+ hour']
-    },
-    {
-      title: 'language',
-      color: 'purple',
-      items: ['English', 'Arabic', 'French', 'Spanish']
-    },
-    {
-      title: 'rating',
-      color: 'pink',
-      items: ['1 star', '2 stars', '3 stars', '4 stars']
-    }
-  ]
+  const [filters, setFilters] = useState<Filter[]>(filtersInit)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,40 +31,97 @@ export default function SearchFilters() {
     fetchData()
   }, [])
 
-  const categoryNames = categories.map(category => category.name);
-  filters[0].items.push(...categoryNames);
+  
+  useEffect(() => {
+    setFilters((prevFilters) =>
+      prevFilters.map((filter) =>
+        filter.title === "categories"
+          ? {
+              ...filter,
+              items: categories.map((category) => ({
+                [category.name]: category.name,
+              })),
+            }
+          : filter
+      )
+    );
+  }, [categories])
+
+
   useEffect(() => {
     const newFilters: Record<string, string[]> = {};
     filters.forEach((filter) => {
-      const values = searchParams.get(filter.title)?.split(",") || [];
-      if (values.length) newFilters[filter.title] = values;
+      const values = searchParams.get(filter.name)?.split(",") || [];
+      if (values.length) newFilters[filter.name] = values;
     });
     setSelectedFilters(newFilters);
   }, [searchParams]);
 
+  // const updateURL = (filterTitle: string, value: string, isChecked: boolean) => {
+  //   const updatedFilters = { ...selectedFilters };
+  //   const currentValues = updatedFilters[filterTitle] || [];
+  //   if (isChecked) {
+  //     updatedFilters[filterTitle] = [...currentValues, value];
+  //   } else {
+  //     updatedFilters[filterTitle] = currentValues.filter((v) => v !== value);
+  //   }
+
+  //   // Remove empty filters
+  //   const searchParams = new URLSearchParams();
+  //   Object.entries(updatedFilters).forEach(([key, values]) => {
+  //     if (values.length) searchParams.set(key, values.join(","));
+  //   });
+
+  //   router.push(`?${searchParams.toString()}`);
+  // };
+
   const updateURL = (filterTitle: string, value: string, isChecked: boolean) => {
     const updatedFilters = { ...selectedFilters };
-    const currentValues = updatedFilters[filterTitle] || [];
-    if (isChecked) {
-      updatedFilters[filterTitle] = [...currentValues, value];
+  
+    if (filterTitle === "categories") {
+      // Allow multiple values for 'categories'
+      const currentValues = updatedFilters[filterTitle] || [];
+      if (isChecked) {
+        updatedFilters[filterTitle] = [...currentValues, value];
+      } else {
+        updatedFilters[filterTitle] = currentValues.filter((v) => v !== value);
+      }
+    } else if (filterTitle === "duration") {
+      // Parse and update min_duration and max_duration
+      const [min, max] = value.slice(1).split("t"); // Remove the "f" and split by "t"
+      const searchParams = new URLSearchParams(window.location.search);
+  
+      if (isChecked) {
+        searchParams.set("duration", value);
+        searchParams.set("min_duration", (Number(min) * 60).toString());
+        searchParams.set("max_duration", (Number(max) * 60).toString());
+      } else {
+        searchParams.delete("duration");
+        searchParams.delete("min_duration");
+        searchParams.delete("max_duration");
+      }
+  
+      router.push(`?${searchParams.toString()}`);
+      return; // Exit early since we're directly managing the URL for 'duration'
     } else {
-      updatedFilters[filterTitle] = currentValues.filter((v) => v !== value);
+      // Allow only one value for other filters
+      updatedFilters[filterTitle] = isChecked ? [value] : [];
     }
-
+  
     // Remove empty filters
     const searchParams = new URLSearchParams();
     Object.entries(updatedFilters).forEach(([key, values]) => {
       if (values.length) searchParams.set(key, values.join(","));
     });
-
+  
     router.push(`?${searchParams.toString()}`);
   };
-
-  // Handle checkbox or radio change
+  
   const handleChange = (filterTitle: string, value: string, isChecked: boolean) => {
     updateURL(filterTitle, value, isChecked);
   };
 
+  // console.log('selectedFilters', selectedFilters)
   return (
     <>
 
@@ -104,15 +132,15 @@ export default function SearchFilters() {
           {filter.items.map((item, i) => (
             <li key={i}>
               <input 
-                type={filter.title === 'price' || filter.title === 'rating' ? 'radio' : 'checkbox'} 
-                name={filter.title} 
-                id={item} 
-                checked={selectedFilters[filter.title]?.includes(item) || false}
+                type={filter.title === 'categories' ? 'checkbox' : 'radio'} 
+                name={filter.name} 
+                id={Object.keys(item)[0]} 
+                checked={selectedFilters[filter.name]?.includes(Object.keys(item)[0]) || false}
                 onChange={(e) =>
-                  handleChange(filter.title, item, e.target.checked)
+                  handleChange(filter.name, Object.keys(item)[0], e.target.checked)
                 }
               />
-              <label htmlFor={item}>{item}</label>
+              <label htmlFor={Object.keys(item)[0]}>{Object.values(item)[0]}</label>
             </li>
           ))}
         </ul>

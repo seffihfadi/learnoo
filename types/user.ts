@@ -1,4 +1,5 @@
 import type { Course, Lesson } from "./course";
+import type { File } from "./file";
 import type { Question, Test } from "./test";
 
 export interface User {

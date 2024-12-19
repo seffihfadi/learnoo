@@ -1,6 +1,7 @@
 import { getDataAction } from "@/actions/getActions";
 import NotFound from "@/app/not-found";
 import SearchFilters from "@/components/custom/search-filters";
+import { buildQueryString } from "@/lib/func";
 import { Course } from "@/types/course";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,13 +25,14 @@ interface Params {
 }
 
 export default async function Search({searchParams}: {searchParams: Params}) {
+
   const search = await searchParams
-  console.log('search', search)
+  const queryString = buildQueryString(search);
+  console.log('/courses?${queryString}', `/courses?${queryString}`)
+  const data = await getDataAction<DataInterface>(`/courses`, `${queryString}&append_with=image`)
 
-  const data = await getDataAction<DataInterface>("/courses", "append_with=image")
-  // console.log("data skkkkkkkkk", data)
-
-  if (!data?.courses) return <NotFound />
+  if (!data) return <NotFound />
+  // if (data.courses.length === 0) return null
 
   return (
     <section className='py-5'>
@@ -77,6 +79,7 @@ export default async function Search({searchParams}: {searchParams: Params}) {
               </div>
             </div>
           )}
+          {data.courses.length === 0 && <p className="col-span-12 text-center text-lg">No courses found</p>}
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx"
+import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { twMerge } from "tailwind-merge"
 
@@ -18,9 +19,10 @@ export function getLanguageName(code: string) {
 }
 
 
-export function formatDate(date: Date) {
-  if (!date) return null
-  const lang = 'en'
+export async function formatDate(date: Date) {
+  // if (!date) return null
+  const lang = await getLocale();
+  console.log('lang', lang)
 
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
@@ -29,7 +31,7 @@ export function formatDate(date: Date) {
   };
 
   try {
-    const formattedDate = new Intl.DateTimeFormat(lang, options).format(new Date(date));
+    const formattedDate = new Intl.DateTimeFormat(lang, options).format(new Date(date || Date.now()));
     return formattedDate
   } catch (error) {
     throw new Error("Invalid date format.")
@@ -55,7 +57,7 @@ export async function getDataAction<T>(path: string, query: string): Promise<T |
     })
 
     const resault = await response.json()
-    console.log('first', resault?.message || resault?.error)
+    // console.log('first', resault?.message || resault?.error)
     if (resault?.message || resault?.error) {
       notFound()
     }

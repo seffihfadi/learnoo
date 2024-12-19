@@ -1,3 +1,4 @@
+import { User } from "@/types/user";
 import { cookies } from "next/headers";
 
 interface Params {
@@ -11,7 +12,7 @@ export async function getAccessToken() {
   return cookieStore.get('id_token')?.value;
 }
 
-async function fetchData({ url, method = 'GET', body = null }: Params) {
+export async function fetchData({ url, method = 'GET', body = null }: Params) {
   try {
 
     const token = await getAccessToken();
@@ -43,4 +44,17 @@ async function fetchData({ url, method = 'GET', body = null }: Params) {
   }
 }
 
-export default fetchData;
+export function buildQueryString (searchObj: Record<any, any>) {
+  const params = new URLSearchParams()
+  Object.entries(searchObj).forEach(([key, value]) => {
+    params.set(key, value)
+  })
+
+  return params.toString()
+}
+
+
+export async function getProfile(): Promise<User> {
+  const cookieStore = await cookies()
+  return JSON.parse(cookieStore.get('profile')?.value || '{}')
+}

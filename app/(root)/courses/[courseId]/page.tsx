@@ -1,5 +1,6 @@
 import RaitingDisplay from "@/components/common/raiting-display";
 import Image from "next/image";
+import {useTranslations} from 'next-intl';
 
 import {
   Accordion,
@@ -21,6 +22,7 @@ interface Params {
 }
 
 export default async function Cours({ params }: Params) {
+  // const t = useTranslations();
   const { courseId } = await params
   const course = await getDataAction<Course>(`/courses/${courseId}`, 'append_with=video,author,categories,chapters,learners,requirements,objectives')
   // console.dir(course, {depth: 4})
@@ -41,7 +43,7 @@ export default async function Cours({ params }: Params) {
             <div className="flex items-center">
               <span className="font-semibold">{course.rate}</span>
               <RaitingDisplay rate={course.rate} />
-              <span className="text-sm">({course.raters_count} reviews)</span>
+              {/* <span className="text-sm">({course.raters_count} {t('reviews')}</span> */}
             </div>
             <div className="flex items-center mt-3 justify-between">
               <EnrollForm courseId={course.id} />

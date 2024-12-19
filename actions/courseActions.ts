@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation";
-import fetchData from "@/lib/func";
+import {fetchData} from "@/lib/func";
 
 export async function enrollAction({courseId} : {courseId: string}) {
   const response = await fetchData({

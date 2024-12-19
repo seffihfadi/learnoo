@@ -1,15 +1,17 @@
-import { getDataAction } from "@/actions/getActions";
 import NotFound from "@/app/not-found";
-import LazyImage from "@/components/custom/lazy-image";
-import { User } from "@/types/user";
-// import { cookies } from "next/headers";
-import Image from "next/image";
+import UserImage from "@/components/custom/user-image";
+import LogoutForm from "@/components/forms/logout-form";
+import { getProfile } from "@/lib/func";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function AccountLayout({ children }: { children: React.ReactNode }) {
 
-  const profile = await getDataAction<User>("/users/profiles/profile", "append_with=image,author_profile")
-  console.log('data', profile)
+  const profile = await getProfile()
+  console.log('profile----------------------', profile)
+  // if (!!profile.author_profile) {
+  //   redirect(`/inst/`)
+  // }
   if (!profile) return <NotFound />
   
   return (
@@ -19,15 +21,11 @@ export default async function AccountLayout({ children }: { children: React.Reac
           <div className="container pt-10">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-3xl">Account</h1>
-              <button className="lite transition-colors hover:text-muted hover:bg-primary !pl-5 w-fit flex items-center">
-                Logout
-                <i className="uil uil-sign-out-alt text-[18px] ml-2"></i>
-              </button>
+              <LogoutForm />
             </div>
             <div className="flex items-center gap-3">
               <div className="rounded-full w-40 aspect-square overflow-hidden">
-                {/* <LazyImage className="w-full h-full object-cover" src={} alt="" width={500} height={500} /> */}
-                <Image className="w-full h-full object-cover" src="/imgs/learn (6).jpg" alt="" width={500} height={500} />
+                <UserImage avatar={profile?.image} fullName={profile.full_name} />
               </div>
               <div className="flex flex-col mx-5">
                 <h2 className="text-3xl capitalize">{profile.full_name}</h2>
@@ -35,9 +33,9 @@ export default async function AccountLayout({ children }: { children: React.Reac
               </div>
             </div>
             <ul className="flex gap-5 items-center profile_links">
-              <li>
+              {/* <li>
                 <Link href="/account/">profile</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/account/learning">learning</Link>
               </li>

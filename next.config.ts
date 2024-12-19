@@ -1,8 +1,11 @@
 
 /** @type {import('next').NextConfig} */
+
 import withPlaiceholder from '@plaiceholder/next';
 import { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
+const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
   // eslint: {
   //   ignoreDuringBuilds: true,
@@ -21,9 +24,12 @@ const nextConfig: NextConfig = {
       {
         hostname: "miro.medium.com"
       },
+      {
+        hostname: "lh3.googleusercontent.com"
+      }
     ]
   },
   
 };
 
-export default withPlaiceholder(nextConfig);
+export default withNextIntl(withPlaiceholder(nextConfig));

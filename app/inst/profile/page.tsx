@@ -1,14 +1,16 @@
 import { getDataAction } from "@/actions/getActions";
 import NotFound from "@/app/not-found";
 import RaitingDisplay from "@/components/common/raiting-display";
+import UserImage from "@/components/custom/user-image";
+import LogoutForm from "@/components/forms/logout-form";
 import { Author } from "@/types/user";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Profile() {
 
-  const author = await getDataAction<Author>("/users/profiles/authors/profile", "append_with=accomplishments,user,courses");
-  console.log('author', author)
+  const author = await getDataAction<Author>("/users/profiles/authors/profile", "append_with=accomplishments,user");
+  // console.log('author', author)
 
   if (!author) return <NotFound />;
 
@@ -17,14 +19,11 @@ export default async function Profile() {
       <div className="bg-muted rounded-br-3xl rounded-bl-3xl w-full px-20 py-10">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl">Account</h1>
-          <button className="lite transition-colors hover:text-muted hover:bg-primary !pl-5 w-fit flex items-center">
-            Logout
-            <i className="uil uil-sign-out-alt text-[18px] ml-2"></i>
-          </button>
+          <LogoutForm />
         </div>
         <div className="flex items-center gap-3">
-          <div className="rounded-full w-40 aspect-square overflow-hidden">
-            <Image className="w-full h-full object-cover" src="/imgs/learn (6).jpg" alt="" width={500} height={500} />
+          <div className="rounded-full w-40 aspect-square overflow-hidden !text-3xl">
+            <UserImage avatar={author.user?.image} fullName={author.user?.full_name || "A"} />
           </div>
           <div className="flex flex-col mx-5">
             <h2 className="text-3xl capitalize">{author.user?.full_name}</h2>

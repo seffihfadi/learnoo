@@ -7,7 +7,7 @@ interface ImageProps {
   height: number;
   width: number;
   className?: string;
-  thumbnailSrc?: string;
+  thumbnailSrc: string | null;
 }
 
 export default async function LazyImage({
