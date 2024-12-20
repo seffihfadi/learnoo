@@ -5,6 +5,7 @@ interface Params {
   url: string;
   method?: string;
   body?: any | null;
+  isFormData?: boolean;
 }
 
 export async function getAccessToken() {
@@ -12,14 +13,14 @@ export async function getAccessToken() {
   return cookieStore.get('id_token')?.value;
 }
 
-export async function fetchData({ url, method = 'GET', body = null }: Params) {
+export async function fetchData({ url, method = 'GET', body = null, isFormData = false }: Params) {
   try {
 
     const token = await getAccessToken();
     // Default headers
     const headers = {
-      'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }), // Add token if it exists
+      ...(!isFormData && {'Content-Type': 'application/json'}),
+      ...(token && { Authorization: `Bearer ${token}` }),
     };
 
     // Build fetch options
@@ -30,11 +31,12 @@ export async function fetchData({ url, method = 'GET', body = null }: Params) {
 
     // Add body if it's a POST, PUT, or PATCH request
     if (body && ['POST', 'PUT', 'PATCH'].includes(method.toUpperCase())) {
-      options.body = JSON.stringify(body);
+      options.body = isFormData ? body : JSON.stringify(body);
     }
 
     // Perform the fetch
     const response = await fetch(url, options);
+    console.log('options', options)
 
     // Return the response directly
     return response;

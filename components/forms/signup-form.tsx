@@ -4,10 +4,11 @@ import { useActionState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { signupAction } from "@/actions/userActions";
+import { useTranslations } from "use-intl";
 
 
 export default function SignupForm() {
-
+  const t = useTranslations('Auth')
   const [state, formAction, isPending] = useActionState(signupAction, null);
 
   return (
@@ -16,26 +17,26 @@ export default function SignupForm() {
 
       <div className="group col-span-2">
         <input id="name" name="name" type="text" required />
-        <label htmlFor="name">full name</label>
+        <label htmlFor="name">{t('fullname')}</label>
         {state?.full_name && <span className='error'>{state.full_name}</span>}
 
         
       </div>
       <div className="group col-span-2">
         <input id="mail" name="mail" type="email" required />
-        <label htmlFor="mail">email</label>
+        <label htmlFor="mail">{t('email')}</label>
         {state?.email && <span className='error'>{state.email}</span>}
       </div>
       <div className="col-span-2 group">
         <input id="password" name="password" type="password" required />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">{t('password')}</label>
         {state?.password && <span className='error'>{state.password}</span>}
 
       </div>
       <div className="flex col-span-2 items-center ">
-        <Link className="hover:text-primary" href="/auth/signin">Login</Link>
-        <button disabled={isPending} type="submit" className="primary ml-auto"> 
-          {isPending ? "submitting..." : "submit"}
+        <Link className="hover:text-primary" href="/auth/signin">{t('login')}</Link>
+        <button disabled={isPending} type="submit" className="primary rtl:mr-auto ltr:ml-auto"> 
+          {isPending ? t('submiting') : t('submit')}
         </button>
       </div>
     </form>

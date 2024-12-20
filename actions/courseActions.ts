@@ -13,9 +13,6 @@ export async function enrollAction({courseId} : {courseId: string}) {
     }
   });
 
-  const data1 = await response.json();
-  // return data || {};
-  // console.log('data1', data1)
   
   if (response.status === 401) {
     redirect(`/auth/signin`)
@@ -27,4 +24,23 @@ export async function enrollAction({courseId} : {courseId: string}) {
 
   const data = await response.json();
   return data || {};
+}
+
+
+export async function createCourseAction(formData: FormData) {
+  // console.log('form', form)
+  const response = await fetchData({
+    url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/courses`,
+    method: 'POST',
+    body: formData,
+    isFormData: true,
+  });
+  console.log('formData', formData)
+
+  console.log('res------------->', response)
+  const data = await response.json();
+  console.log('data', data)
+
+  return data || {};
+
 }

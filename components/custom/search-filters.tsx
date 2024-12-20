@@ -35,7 +35,7 @@ export default function SearchFilters() {
   useEffect(() => {
     setFilters((prevFilters) =>
       prevFilters.map((filter) =>
-        filter.title === "categories"
+        filter.name === "categories_names"
           ? {
               ...filter,
               items: categories.map((category) => ({

@@ -30,7 +30,7 @@ export default function Courses() {
             <Image className="w-full h-full object-cover" src="/imgs/learn (5).jpg" alt="" width={500} height={500} />
           </div>
           <div className="p-4 h-full bg-muted shadow-md">
-            <Link href="/inst/courses/create">
+            <Link href="/inst/courses/create/30">
               <h5 className="font-semibold mb-1">Node & MongoDB Full Course</h5>
               <div className="flex items-center justify-between">
                 <span className="text-sm capitalize font-semibold text-primary bg-blue-200 rounded-sm px-2 py-.5">in progress</span>

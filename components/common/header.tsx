@@ -3,12 +3,13 @@ import Link from "next/link"
 import { LanguageSwitcher } from "./language-swither"
 import ThemeToggle from "./theme-toggle"
 import SearchBar from "../custom/search-bar"
-import { cookies } from "next/headers"
 import UserImage from "../custom/user-image"
 import { getProfile } from "@/lib/func"
+import { getTranslations } from "next-intl/server"
 
 
 export default async function Header() {
+  const t = await getTranslations('Auth')
   const profile = await getProfile()
 
   // console.log('profile', profile)
@@ -34,8 +35,8 @@ export default async function Header() {
         : 
         
           <div className="flex items-center gap-2">
-            <Link href="/auth/signin" className="secondary">login</Link>
-            <Link href="/auth/signup" className="primary">sign in</Link>
+            <Link href="/auth/signin" className="secondary">{t('login')}</Link>
+            <Link href="/auth/signup" className="primary">{t('register')}</Link>
           </div>
         }
       </div>

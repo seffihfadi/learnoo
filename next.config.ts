@@ -7,6 +7,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
+  
   // eslint: {
   //   ignoreDuringBuilds: true,
   // },
@@ -28,6 +29,12 @@ const nextConfig: NextConfig = {
         hostname: "lh3.googleusercontent.com"
       }
     ]
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb"
+
+    }
   },
   
 };

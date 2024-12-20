@@ -43,5 +43,31 @@
     "french": "French",
     "spanish": "Spanish"
 
+  },
+  "Auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "confirmPassword": "Confirm Password",
+    "fullname": "Full Name",
+    "resetPassword": "Reset Password",
+    "sendPasswordResetLink": "Send Password Reset Link",
+    "verifyYourEmail": "Verify Your Email Address",
+    "aFreshVerificationLink": "A fresh verification link has been sent to your email address.",
+    "submit": "Submit",
+    "submiting": "Submiting",
+    "signupMotivation": "Join our community and start learning today!",
+    "signinMotivation": "Welcome back! Please login to continue.",
+    "resetPasswordMotivation": "Forgot your password? No problem! Just enter your email address and we'll send you a link to reset your password.",
+    "verifyEmailMotivation": "Before proceeding, please check your email for a verification link. If you did not receive the email, click the button below to request another.",
+    "google": "Google",
+    "facebook": "Facebook",
+    "or": "or"
+
+    
   }
 }
