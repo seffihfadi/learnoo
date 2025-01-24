@@ -44,3 +44,4 @@ export async function createCourseAction(formData: FormData) {
   return data || {};
 
 }
+

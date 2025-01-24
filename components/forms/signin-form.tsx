@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 
 export default function SigninForm() {
   const t = useTranslations('Auth')
-  const [state, formAction, isPending] = useActionState(signinAction, null);
+  const [state, formAction, isPending] = useActionState(signinAction,null);
 
   return (
     <form action={formAction} className="grid grid-cols-2 max-w-md w-full gap-4 px-5 mt-10">
