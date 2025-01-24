@@ -19,6 +19,7 @@ export async function signinAction(prev: any, formData: FormData) {
   });
 
   const setCookieHeader = res.headers.get("set-cookie");
+
   if (res.ok && setCookieHeader) {
     const cookiesArray = setCookieHeader.split(", ").map((cookie) => cookie.split(";")[0]);
     const cookiesStore = await cookies();

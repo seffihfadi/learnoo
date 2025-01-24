@@ -10,7 +10,8 @@ import Link from "next/link";
 export default async function Profile() {
 
   const author = await getDataAction<Author>("/users/profiles/authors/profile", "append_with=accomplishments,user");
-  // console.log('author', author)
+
+  console.log('author', author)
 
   if (!author) return <NotFound />;
 

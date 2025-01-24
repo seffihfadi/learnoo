@@ -10,7 +10,10 @@ export type level = 'beginer' |'medium' | 'advanced';
 
 // LearningStatus Enum
 export type LearningStatus ='succeed' | 'failed' | 'learning';
-
+export interface Courses{
+  count: number,
+  courses:Course[]
+}
 export interface Course {
   id: number;
   created_at: Date;

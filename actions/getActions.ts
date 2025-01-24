@@ -1,3 +1,4 @@
+import { Course, Courses } from "@/types/course";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
@@ -34,4 +35,9 @@ export async function getDataAction<T>(path: string, query: string): Promise<T |
     console.error("Error fetching data:", error);
     return null;
   }
+}
+
+export default async function getCoursesAction() {
+  return  await getDataAction<Courses>(`/courses`, `&append_with=image,author`)
+
 }

@@ -18,7 +18,7 @@ export default function Learning() {
                     <Image className="w-full h-full object-cover" src="/imgs/learn (5).jpg" alt="" width={100} height={100} />
                   </div>
                   <div className="flex items-center justify-between w-full">
-                    <p className="font-semibold text-sm">Seffih Fadi</p>
+                    <p className="font-semibold text-sm">dfsdmmmd Fadi</p>
                     <div className="flex items-center">
                       <i className="uil uil-star text-yellow-500 text-[18px]"></i>
                       <span className="mx-1 font-semibold text-sm">4.5</span>
