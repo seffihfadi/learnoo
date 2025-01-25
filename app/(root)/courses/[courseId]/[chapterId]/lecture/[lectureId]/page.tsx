@@ -9,15 +9,16 @@ import LectureNotes from "@/components/custom/lecture-notes"
 
 interface Params {
   params: {
-    courseId: string;
-    chapterId: string;
-    lectureId: string;
+    courseId: string
+    chapterId: string
+    lectureId: string
   }
 }
 
 export default async function Lecture({params}: Params) {
 
-  const { courseId, chapterId, lectureId } = params
+  const parameters = await params
+  const { courseId, chapterId, lectureId } = parameters
   const lecture = await getDataAction<Lesson>(`/courses/${courseId}/chapters/${chapterId}/lessons/${lectureId}`, "");
   // console.log('lecture', lecture)
   if (!lecture) return <NotFound />
