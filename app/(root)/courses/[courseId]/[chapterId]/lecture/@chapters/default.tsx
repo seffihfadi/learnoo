@@ -11,9 +11,9 @@ import type { Course } from "@/types/course";
 import Link from "next/link";
 
 interface Params {
-  params: {
+  params: Promise<{
     courseId: string;
-  }
+  }>
 }
 
 export default async function DefaultChapters({params}: Params) {
