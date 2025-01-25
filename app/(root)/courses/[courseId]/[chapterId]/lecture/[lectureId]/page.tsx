@@ -7,17 +7,17 @@ import LectureContent from "@/components/custom/lecture-content"
 import LectureForums from "@/components/custom/lecture-forums"
 import LectureNotes from "@/components/custom/lecture-notes"
 
-interface PageProps {
-  params: {
+interface Params {
+  params: Promise<{
     courseId: string
     chapterId: string
     lectureId: string
-  }
+  }>
 }
 
-export default async function Lecture({params}: PageProps) {
+export default async function Lecture({ params }: Params) {
 
-  const  { courseId, chapterId, lectureId } = params
+  const { courseId, chapterId, lectureId } = await params
   const lecture = await getDataAction<Lesson>(`/courses/${courseId}/chapters/${chapterId}/lessons/${lectureId}`, "");
   // console.log('lecture', lecture)
   if (!lecture) return <NotFound />
