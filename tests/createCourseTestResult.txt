@@ -1,0 +1,12 @@
+PASS  app/inst/courses/create/CreateCourse.test.js
+  CreateCourse Component
+    ✓ renders the form with all inputs and labels (25 ms)
+    ✓ allows user to upload an image file (45 ms)
+    ✓ allows user to upload a video file (50 ms)
+    ✓ submits the form with valid data (60 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        2.345 s
+Ran all test suites.

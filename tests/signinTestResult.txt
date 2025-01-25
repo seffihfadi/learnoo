@@ -1,0 +1,12 @@
+PASS  app/auth/SigninForm.test.js
+  SigninForm Component
+    ✓ renders the form with all inputs and labels (20 ms)
+    ✓ displays error messages when state contains errors (15 ms)
+    ✓ submits the form and calls signinAction (50 ms)
+    ✓ disables the submit button when isPending is true (10 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.234 s
+Ran all test suites.

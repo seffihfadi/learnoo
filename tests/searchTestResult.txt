@@ -1,0 +1,12 @@
+PASS  app/courses/search.test.js
+  Search Component
+    ✓ renders the component with data (50 ms)
+    ✓ displays NotFound component when no data is returned (30 ms)
+    ✓ displays "No courses found" when the courses array is empty (25 ms)
+    ✓ renders the SearchFilters component (20 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.567 s
+Ran all test suites.
