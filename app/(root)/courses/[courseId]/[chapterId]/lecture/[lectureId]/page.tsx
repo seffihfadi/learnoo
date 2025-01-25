@@ -17,7 +17,7 @@ interface Params {
 
 export default async function Lecture({params}: Params) {
 
-  const { courseId, chapterId, lectureId } = await params
+  const { courseId, chapterId, lectureId } = params
   const lecture = await getDataAction<Lesson>(`/courses/${courseId}/chapters/${chapterId}/lessons/${lectureId}`, "");
   // console.log('lecture', lecture)
   if (!lecture) return <NotFound />
