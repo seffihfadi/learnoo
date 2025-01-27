@@ -17,9 +17,10 @@ import RaitingDisplay from "@/components/common/raiting-display"
 import { getDataAction } from "@/actions/getActions"
 import { Course } from "@/types/course"
 
-export default async function CourseContent({ params }: { params: { courseId: string } }) {
+export default async function CourseContent({ params }: { params: Promise<{ courseId: string }> }) {
+  const {courseId} = await params
 
-  const course = await getDataAction<Course|null>(`/courses/${params.courseId}`,"&append_with=chapters,learners")
+  const course = await getDataAction<Course|null>(`/courses/${courseId}`,"&append_with=chapters,learners")
 
   return (
     <section>
