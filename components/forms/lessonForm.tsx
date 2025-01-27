@@ -1,67 +1,68 @@
 'use client'
 import React, { useCallback, useState } from 'react'
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { useDropzone } from 'react-dropzone';
-// import { useForm } from 'react-hook-form';
-// import { createLessonAction } from '@/actions/courseActions';
- const lessonForm = () => {
-    //   const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
-    //   const [isSubmitting, setIsSubmitting] = useState(false);
-    //   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    //   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useDropzone } from 'react-dropzone';
+import { useForm } from 'react-hook-form';
+import { createLessonAction } from '@/actions/courseActions';
+import { Course } from '@/types/course';
+ const lessonForm = ({ course,chapterId }: { course: Course | null , chapterId:string}) => {
+      const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
+      const [isSubmitting, setIsSubmitting] = useState(false);
+      const [errorMessage, setErrorMessage] = useState<string | null>(null);
+      const [successMessage, setSuccessMessage] = useState<string | null>(null);
     
-    // const onDropVideo = useCallback((acceptedFiles: File[]) => {
-    //     setSelectedVideo(acceptedFiles[0]);
-    //   }, []);
+    const onDropVideo = useCallback((acceptedFiles: File[]) => {
+        setSelectedVideo(acceptedFiles[0]);
+      }, []);
     
-    //   const {
-    //     getRootProps: getRootPropsVideo,
-    //     getInputProps: getInputPropsVideo,
-    //     isDragActive: isDragActiveVideo,
-    //   } = useDropzone({
-    //     onDrop: onDropVideo,
-    //     multiple: false,
-    //     accept: {
-    //       "video/mp4": [".mp4", ".mov"],
-    //     },
-    //   });
-    //  const {
-    //     register,
-    //     handleSubmit,
-    //     formState: { errors },
-    //     reset,
-    //   } = useForm();
-    //     const onSubmit = async (data: any) => {
-    //       const formData = new FormData();
-    //       formData.append("title", data.title); 
-    //       formData.append("description","jjjjjj")
-    //       formData.append("video", selectedVideo);
+      const {
+        getRootProps: getRootPropsVideo,
+        getInputProps: getInputPropsVideo,
+        isDragActive: isDragActiveVideo,
+      } = useDropzone({
+        onDrop: onDropVideo,
+        multiple: false,
+        accept: {
+          "video/mp4": [".mp4", ".mov"],
+        },
+      });
+     const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+      } = useForm();
+        const onSubmit = async (data: any) => {
+          const formData = new FormData();
+          formData.append("title", data.title); 
+          formData.append("description","jjjjjj")
+          formData.append("video", selectedVideo);
        
-    //       if (!course) {
-    //         setErrorMessage("Course is not available.");
-    //         return;
-    //       }
-    //       try{
-    //           setIsSubmitting(true)
-    //       const response = await createLessonAction(formData, course.id,course.chapter.id);
-    //       if (response?.error) {
-    //           setErrorMessage(response.error); // Set error message
-    //         } else {
-    //           setSuccessMessage("Course created successfully!"); // Set success message
-    //           reset();
+          if (!course) {
+            setErrorMessage("Course is not available.");
+            return;
+          }
+          try{
+              setIsSubmitting(true)
+          const response = await createLessonAction(formData, course.id, chapterId);
+          if (response?.error) {
+              setErrorMessage(response.error); // Set error message
+            } else {
+              setSuccessMessage("Course created successfully!"); // Set success message
+              reset();
           
-    //         }
-    //       } catch (error) {
-    //         setErrorMessage("An error occurred while creating the course."); // Set generic error message
-    //         console.error("Error:", error);
-    //       } finally {
-    //         setIsSubmitting(false);
-    //       }
-    //     };
+            }
+          } catch (error) {
+            setErrorMessage("An error occurred while creating the course."); // Set generic error message
+            console.error("Error:", error);
+          } finally {
+            setIsSubmitting(false);
+          }
+        };
   return (
 
-    <div>
-      {/* {successMessage && (
+    <div className='flex flex-col'>
+      {successMessage && (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
           {successMessage}
         </div>
@@ -70,9 +71,8 @@ import React, { useCallback, useState } from 'react'
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
           {errorMessage}
         </div>
-      )} */}
-      fddfd
-          {/* <form className="max-w-3xl w-full mx-auto" onSubmit={handleSubmit(onSubmit) }>
+      )}
+          <form className="max-w-3xl w-full mx-auto" onSubmit={handleSubmit(onSubmit) }>
     <Tabs defaultValue="video" className="w-full my-8">
       <TabsList>
         <TabsTrigger value="video">Video Lecture</TabsTrigger>
@@ -136,8 +136,7 @@ import React, { useCallback, useState } from 'react'
         
     </Tabs>
     
-  </form> */}
-  </div>
+  </form></div>
 
   )
 }
