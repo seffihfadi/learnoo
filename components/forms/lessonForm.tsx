@@ -36,7 +36,12 @@ import { Course } from '@/types/course';
           const formData = new FormData();
           formData.append("title", data.title); 
           formData.append("description","jjjjjj")
-          formData.append("video", selectedVideo);
+          if (selectedVideo) {
+            formData.append("video", selectedVideo);
+          } else {
+            setErrorMessage("Please select a video.");
+            return;
+          }
        
           if (!course) {
             setErrorMessage("Course is not available.");

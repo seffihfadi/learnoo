@@ -119,7 +119,7 @@ export default function CreateCourse() {
               type="text"
             />
             {errors.title && (
-              <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.title?.message as string}</p>
             )}
 
             <textarea
@@ -128,7 +128,7 @@ export default function CreateCourse() {
               className="bg-background w-full text-lg mt-5 h-[60%] outline-none"
             />
             {errors.description && (
-              <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.description?.message as string}</p>
             )}
           </div>
 
@@ -216,7 +216,7 @@ export default function CreateCourse() {
             />
             <label htmlFor="price">Price</label>
             {errors.price && (
-              <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.price?.message as string}</p>
             )}
             <div className="absolute right-12 top-3 font-semibold text-secondary">DZD</div>
           </div>
@@ -229,7 +229,7 @@ export default function CreateCourse() {
             </select>
             <label htmlFor="level">Level</label>
             {errors.level && (
-              <p className="text-red-500 text-sm mt-1">{errors.level.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.level.message as string}</p>
             )}
           </div>
 
@@ -244,7 +244,7 @@ export default function CreateCourse() {
             </select>
             <label htmlFor="language">Language</label>
             {errors.language && (
-              <p className="text-red-500 text-sm mt-1">{errors.language.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.language?.message as string}</p>
             )}
           </div>
 
@@ -261,7 +261,7 @@ export default function CreateCourse() {
             />
             <label htmlFor="duration">Duration</label>
             {errors.duration && (
-              <p className="text-red-500 text-sm mt-1">{errors.duration.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.duration?.message as string}</p>
             )}
             <div className="absolute right-12 top-3 font-semibold text-primary">Hours</div>
           </div>

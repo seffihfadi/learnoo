@@ -42,7 +42,7 @@ export default async function CourseContent({ params }: { params: Promise<{ cour
           <span className="text-4xl">{course?.rate}</span>
           <div className="flex flex-col items-center">
             <RaitingDisplay rate={4} />
-            <Link href={`/inst/courses/${params.courseId}`} className="text-muted-foreground hover:text-primary">(123 reviews)</Link>
+            <Link href={`/inst/courses/${courseId}`} className="text-muted-foreground hover:text-primary">(123 reviews)</Link>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ return(
     <li className="flex items-center gap-4 mb-3">
       <i className="uil uil-airplay text-[20px]"></i>
       <div className="flex flex-col">
-        <Link href={`/inst/courses/${params.courseId}/lecture/${lesson.id}`}>{lesson.title}</Link>
+        <Link href={`/inst/courses/${courseId}/lecture/${lesson.id}`}>{lesson.title}</Link>
         <span className="text-muted-foreground text-sm">{Math.floor(Math.random() * 60) + 1}m</span>
       </div>
       {/* <Link className="ml-auto" href="/inst/courses/145/edit">
