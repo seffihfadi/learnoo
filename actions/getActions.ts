@@ -24,10 +24,9 @@ export async function getDataAction<T>(path: string, query: string): Promise<T |
 
     const resault = await response.json()
 
-    console.log('resault', resault)
-    console.log('first', resault?.message || resault?.error)
+
     if (resault?.message || resault?.error) {
-      notFound()
+      throw new Error(resault.message || resault.error);
     }
     return resault
   } catch (error) {
