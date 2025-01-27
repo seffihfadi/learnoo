@@ -32,7 +32,7 @@ import { cookies } from "next/headers";
 
 export async function createCourseAction(formData: FormData) {
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const idToken = cookieStore.get("id_token")?.value;
 
   if (!idToken) {
