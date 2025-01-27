@@ -16,17 +16,17 @@ interface DataInterface {
 }
 
 interface Params {
-  searchParams: {
+  searchParams: Promise<{
     title: string;
     level: string;
     duration: string;
     rate: string;
     categories: string;
 
-  }
+  }>
 }
 
-export default async function Search({searchParams}: {searchParams: Params}) {
+export default async function Search({searchParams}: Params) {
 
   const t = await getTranslations('SearchPage')
   const search = await searchParams

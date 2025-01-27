@@ -15,9 +15,9 @@ import EnrollForm from "@/components/forms/enroll-form";
 import { getTranslations } from "next-intl/server";
 
 interface Params {
-  params: {
+  params: Promise<{
     courseId: string
-  }
+  }>
   
 }
 

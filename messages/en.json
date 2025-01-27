@@ -69,5 +69,28 @@
     "or": "or"
 
     
+  },
+  "Landing": {
+    "title": "Your Personalized Copilot for Learning Online",
+    "subtitle": "Join millions of learners from around the world already learning on Udemy! Find the right instructor for you.", 
+    "discover": "Discover more",
+    "who": "Who are we?",
+    "whoTitle": "Empowering Individuals and Families with Quality Learning",
+    "whoSubtitle": "At Learnoo, we believe in making education accessible to everyone. Whether you’re a student, a professional, or simply looking to expand your horizons, our courses are designed to fit your needs and help you succeed.",
+    "learn": "Learn More",
+    "beOurInstructor": "Be Our Instructor",
+    "beOurInstructorTitle": "Teach What You Love, Earn What You Deserve",
+    "beOurInstructorSubtitle": "At Learnoo, we believe that everyone has something to teach. Whether you’re an expert in your field or simply passionate about a subject, we want to help you share your knowledge with the world.",
+    "join": "Join Us Now",
+    "benefits": "Benefits",
+    "benefitsTitle": "Why Choose Learnoo?",
+    "benefitsSubtitle": "At Learnoo, we’re committed to providing our learners with the best possible experience. Here are just a few of the benefits you’ll enjoy when you choose us:",
+    "benefits1": "Expert Instructors",
+    "benefits2": "Flexible Learning",
+    "benefits3": "Affordable Pricing",
+    "benefits4": "Quality Content",
+    "benefits5": "24/7 Support",
+    "benefits6": "Community Engagement",
+    "getStarted": "Get Started"
   }
 }

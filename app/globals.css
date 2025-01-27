@@ -238,3 +238,17 @@
     @apply content-[''] h-1 rounded-tr-full rounded-tl-full w-full bg-primary absolute bottom-0 left-0
   }
 }
+
+
+/* .hero-content {
+  background-image: url("/imgs/learn (5).jpg");
+  @apply bg-cover
+} */
+
+section.landing img {
+  @apply rounded-xl object-cover;
+}
+
+.landing .title {
+  @apply text-muted-foreground w-full px-4 py-2 font-semibold rtl:border-r-4 ltr:border-l-4 border-primary my-4;
+}

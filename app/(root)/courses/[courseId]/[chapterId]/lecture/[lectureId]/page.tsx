@@ -8,14 +8,14 @@ import LectureForums from "@/components/custom/lecture-forums"
 import LectureNotes from "@/components/custom/lecture-notes"
 
 interface Params {
-  params: {
-    courseId: string;
-    chapterId: string;
-    lectureId: string;
-  }
+  params: Promise<{
+    courseId: string
+    chapterId: string
+    lectureId: string
+  }>
 }
 
-export default async function Lecture({params}: Params) {
+export default async function Lecture({ params }: Params) {
 
   const { courseId, chapterId, lectureId } = await params
   const lecture = await getDataAction<Lesson>(`/courses/${courseId}/chapters/${chapterId}/lessons/${lectureId}`, "");
