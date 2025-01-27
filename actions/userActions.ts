@@ -36,7 +36,7 @@ export async function signinAction(prev: any, formData: FormData) {
       // Assign different expiration times for tokens
       console.log('key', key)
       if (key === 'accessToken') {
-        cookieOptions.maxAge = 60 * 15 * 4; // 15 minutes
+        cookieOptions.maxAge =  60 * 60 * 24 * 30; // 15 minutes
       } else if (key === 'refreshToken') {
         cookieOptions.maxAge = 60 * 60 * 24 * 30; // 30 days
       }

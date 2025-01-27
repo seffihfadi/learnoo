@@ -46,7 +46,10 @@ export interface Category {
   name: string;
   courses?: Course[];
 }
-
+export interface Courses{
+  count: number,
+  courses:Course[]
+}
 export interface CourseCategory {
   created_at: Date;
   updated_at: Date;
