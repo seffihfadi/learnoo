@@ -1,5 +1,5 @@
 "use server"
-
+import axios from "axios";
 import { redirect } from "next/navigation";
 import {fetchData} from "@/lib/func";
 
@@ -27,7 +27,7 @@ export async function enrollAction({courseId} : {courseId: string}) {
 }
 
 
-import axios from "axios";
+
 import { cookies } from "next/headers";
 
 export async function createCourseAction(formData: FormData) {
