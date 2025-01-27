@@ -64,7 +64,7 @@ export async function createCourseAction(formData: FormData) {
       return { error: "An unexpected error occurred." };
     }
   } catch (error) {
-    console.error("Error creating course:", error.response);
+    console.error("Error creating course:", error);
 
     // Handle Axios errors
     if (axios.isAxiosError(error)) {
@@ -163,7 +163,7 @@ export async function createLessonAction(formData: FormData,courseId:Number,chap
 console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}/courses/${courseId}/chapters/${chapterId}/lessons`)
 console.log(formData)
     // Send the request to the API using Axios
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/courses/${courseId}/chapters/${chapterId}/lessons`, formData, {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/courses/${courseId}/chapters/${chapterId}/lessons/create_with_video`, formData, {
       headers: { 
         Authorization: `Bearer ${idToken}`,
       },
@@ -179,7 +179,7 @@ console.log(formData)
       return { error: "An unexpected error occurred." };
     }
   } catch (error) {
-    console.error("Error creating chapter:", error.response|| error);
+    console.error("Error creating chapter:",  error);
 
     // Handle Axios errors
     if (axios.isAxiosError(error)) {
