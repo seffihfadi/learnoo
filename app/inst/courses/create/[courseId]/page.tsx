@@ -13,9 +13,9 @@ import { getDataAction } from "@/actions/getActions";
 import { Course } from "@/types/course";
 import CourseForm from "@/components/forms/CourseForm" // Import the Client Component
 
-export default async function Chapters({ params }: { params: { courseId: string } }) {
-  
-  const course = await getDataAction<Course | null>(`/courses/${params.courseId}`, "&append_with=chapters,learners");
+export default async function Chapters({ params }:  { params: Promise< { courseId: string } >}) {
+  const {courseId} = await params;
+  const course = await getDataAction<Course | null>(`/courses/${courseId}`, "&append_with=chapters,learners");
 
   return (
     <section>

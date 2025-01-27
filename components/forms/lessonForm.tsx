@@ -5,7 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { createLessonAction } from '@/actions/courseActions';
 import { Course } from '@/types/course';
- const lessonForm = ({ course,chapterId }: { course: Course | null , chapterId:string}) => {
+ const lessonForm = ({ course,chapterId }:  { course: Course | null , chapterId:string}) => {
       const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
       const [isSubmitting, setIsSubmitting] = useState(false);
       const [errorMessage, setErrorMessage] = useState<string | null>(null);
