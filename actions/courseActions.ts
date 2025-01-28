@@ -29,6 +29,7 @@ export async function enrollAction({courseId} : {courseId: string}) {
 
 
 import { cookies } from "next/headers";
+import { Question } from "@/types/test";
 
 export async function createCourseAction(formData: FormData) {
 
@@ -200,5 +201,58 @@ console.log(formData)
     }
 
     return { error: "Failed to create chapter. Please try again." };
+  }
+}
+export async function createQuestionAction(formData: Question,courseId:string,chapterId:string) {
+
+  const cookieStore = await cookies();
+  const idToken = cookieStore.get("id_token")?.value;
+
+  if (!idToken) {
+    throw new Error("Authorization token is missing.");
+  }
+
+  try {
+    // Log the FormData for debugging
+
+    // Send the request to the API using Axios
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/courses/${courseId}/chapters/${chapterId}/questions`, {...formData,duration:Number(formData.duration)}, {
+      headers: { 
+        'Content-Type': 'application/json' ,
+        Authorization: `Bearer ${idToken}`,
+      },
+    });
+
+    console.log("Response Status:", response.status);
+    console.log("Response Data:", response.data);
+
+    // Handle the response
+    if (response.status === 201) {
+      return { success: true };
+    } else {
+      return { error: "An unexpected error occurred." };
+    }
+  } catch (error) {
+    console.error("Error creating question:",  error);
+
+    // Handle Axios errors
+    if (axios.isAxiosError(error)) {
+      const errorData = error.response?.data;
+      const status = error.response?.status;
+
+      if (status === 400) {
+        return { error: errorData?.error || "Invalid request data." };
+      } else if (status === 401) {
+        return { error: "Unauthorized. Please log in again." };
+      } else if (status === 500) {
+        return { error: "An internal server error occurred. Please try again later." };
+      } else if (status === 520) {
+        return { error: "An internal server error occurred. Please try again later." };
+      } else {
+        return { error: errorData?.message || "An unexpected error occurred." };
+      }
+    }
+
+    return { error: "Failed to create question. Please try again." };
   }
 }
